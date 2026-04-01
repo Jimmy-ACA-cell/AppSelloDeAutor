@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Iniciar Sesión - Sello de Autor')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Overlay -->
+<div th:replace="~{fragments/layout :: overlay}"></div>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<main class="py-5 d-flex align-items-center flex-grow-1" style="margin-top: 70px;">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card p-4 bg-dark bg-opacity-50 text-white border-0" style="border-radius:14px; backdrop-filter:blur(4px);">
+                    <h3 class="text-center mb-4 font-weight-bold fw-bold" style="color:var(--accent);">Iniciar Sesión</h3>
+
+                    <div th:if="${param.error}" class="alert alert-danger bg-danger text-white border-0">
+                        Credenciales inválidas. Por favor intente de nuevo.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success bg-success text-white border-0">
+                        Sesión cerrada correctamente.
+                    </div>
+                    <div th:if="${param.success}" class="alert alert-success bg-success text-white border-0">
+                        Registro exitoso. Ahora puede iniciar sesión.
+                    </div>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label text-muted">Correo Electrónico</label>
+                            <input type="email" class="form-control bg-dark border-secondary text-white" id="username" name="username" required autofocus>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label text-muted">Contraseña</label>
+                            <input type="password" class="form-control bg-dark border-secondary text-white" id="password" name="password" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold">Ingresar</button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <span class="text-white-50">¿No tienes cuenta?</span> <a href="/register" class="fw-bold text-decoration-none" style="color:var(--accent);">Regístrate</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/layout :: footer}"></div>
+
+</body>
+</html>

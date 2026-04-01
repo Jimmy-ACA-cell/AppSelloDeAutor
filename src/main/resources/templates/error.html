@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Error - Sello de Autor')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/layout :: overlay}"></div>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<main class="py-5 d-flex align-items-center flex-grow-1" style="margin-top: 70px;">
+    <div class="container text-center text-white">
+        <h1 class="display-1 fw-bold text-warning" th:text="${errorCode} ?: '500'">500</h1>
+        <h4 class="mb-3" th:text="${errorMsg} ?: 'Ocurrió un error inesperado.'">Error</h4>
+        <a href="/catalogo" class="btn btn-outline-light mt-3">Volver al inicio</a>
+    </div>
+</main>
+
+<div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>

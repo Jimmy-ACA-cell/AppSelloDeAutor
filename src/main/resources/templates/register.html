@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Registro - Sello de Autor')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Overlay -->
+<div th:replace="~{fragments/layout :: overlay}"></div>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<main class="py-5 d-flex align-items-center flex-grow-1" style="margin-top: 70px;">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 bg-dark bg-opacity-50 text-white border-0" style="border-radius:14px; backdrop-filter:blur(4px);">
+                    <h3 class="text-center mb-4 fw-bold" style="color:var(--accent);">Crear Nueva Cuenta</h3>
+
+                    <div th:if="${error}" class="alert alert-danger bg-danger text-white border-0" th:text="${error}">
+                        Error al registrar.
+                    </div>
+
+                    <form th:action="@{/register}" th:object="${usuario}" method="post">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="nombre" class="form-label text-muted">Nombre</label>
+                                <input type="text" class="form-control bg-dark border-secondary text-white"
+                                       th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid'"
+                                       id="nombre" th:field="*{nombre}">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                            </div>
+                            <div class="col">
+                                <label for="apellido" class="form-label text-muted">Apellido</label>
+                                <input type="text" class="form-control bg-dark border-secondary text-white"
+                                       th:classappend="${#fields.hasErrors('apellido')} ? 'is-invalid'"
+                                       id="apellido" th:field="*{apellido}">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-muted">Correo Electrónico</label>
+                            <input type="email" class="form-control bg-dark border-secondary text-white"
+                                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
+                                   id="email" th:field="*{email}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label text-muted">Contraseña</label>
+                            <input type="password" class="form-control bg-dark border-secondary text-white"
+                                   th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'"
+                                   id="password" th:field="*{password}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                            <div class="form-text text-white-50">Debe tener al menos 6 caracteres.</div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold">Registrarse</button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <span class="text-white-50">¿Ya tienes cuenta?</span> <a href="/login" class="fw-bold text-decoration-none" style="color:var(--accent);">Inicia Sesión</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/layout :: footer}"></div>
+
+</body>
+</html>

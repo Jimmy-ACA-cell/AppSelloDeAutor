@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Carrito - Sello de Autor')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Overlay -->
+<div th:replace="~{fragments/layout :: overlay}"></div>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<main class="py-5" style="margin-top: 70px;">
+    <div class="container text-white py-5">
+        <h2 class="mb-4 display-6 fw-bold">Tu Carrito</h2>
+        
+        <div class="row w-100">
+            <div class="col-md-8 mb-4">
+                <div class="card bg-dark bg-opacity-50 border-0" style="border-radius:14px; backdrop-filter:blur(4px);">
+                    <div class="card-body p-4" id="cartContainer">
+                        <!-- JS Injected cart items -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                 <div class="card bg-dark bg-opacity-50 p-4 border-0 sticky-top shadow-sm" style="border-radius:14px; backdrop-filter:blur(4px); top: 90px;" id="cart-summary">
+                    <h4 class="text-white fw-bold mb-3">Resumen</h4>
+                    <div class="d-flex justify-content-between mb-3 border-bottom border-secondary pb-3">
+                        <span class="text-white-50">Total a pagar:</span>
+                        <span class="text-white fs-4 fw-bold" id="cart-total">$0</span>
+                    </div>
+                    <button class="btn btn-warning w-100 fw-bold btn-lg mb-2" onclick="alert('Simulación de pago: Gracias por tu compra (demo).'); localStorage.removeItem('sc_cart_v1'); window.location='/catalogo';">Pagar / Checkout</button>
+                    <button class="btn btn-outline-danger w-100" onclick="if(confirm('¿Vaciar carrito?')) { localStorage.removeItem('sc_cart_v1'); window.location.reload(); }">Vaciar carrito</button>
+                 </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/layout :: footer}"></div>
+
+</body>
+</html>
